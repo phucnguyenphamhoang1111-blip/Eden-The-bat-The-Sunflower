@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDEN — The Bat & The Sunflower</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600&family=Playfair+Display:ital,wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#18120e;
+  --brown:#2b1d16;
+  --cream:#eee4d0;
+  --paper:#e9ddc5;
+  --gold:#dca83b;
+  --orange:#b86c2c;
+  --muted:#7b6957;
+  --line:rgba(70,48,30,.18);
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Be Vietnam Pro",sans-serif;
+  overflow-x:hidden;
+}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:fixed;
+  inset:0 0 auto 0;
+  height:72px;
+  z-index:1000;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 7vw;
+  background:rgba(24,18,14,.72);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(220,168,59,.14);
+}
+.logo{
+  color:#f3e7cf;
+  font:italic 500 18px "Playfair Display",serif;
+  letter-spacing:.34em;
+}
+.nav-links{display:flex;gap:28px}
+.nav-links a{
+  color:#d8c9ae;
+  text-decoration:none;
+  font-size:10px;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  transition:.3s;
+}
+.nav-links a:hover{color:var(--gold)}
+
+/* ---------- HERO ---------- */
+.hero{
+  min-height:100vh;
+  padding:150px 9vw 90px;
+  display:grid;
+  grid-template-columns: .9fr 1.1fr;
+  align-items:center;
+  gap:50px;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 72% 45%,rgba(220,168,59,.24),transparent 28%),
+    radial-gradient(circle at 80% 60%,rgba(184,108,44,.13),transparent 35%),
+    #100b08;
+  color:#f2e7d2;
+}
+.hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:.12;
+  pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.28'/%3E%3C/svg%3E");
+}
+.hero-copy{position:relative;z-index:2;max-width:620px}
+.eyebrow{
+  font-size:10px;
+  letter-spacing:.35em;
+  color:#bda985;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
+.hero h1{
+  font:400 clamp(50px,7vw,98px)/.9 "Playfair Display",serif;
+  letter-spacing:-.045em;
+}
+.hero h1 em{color:#e1a23a}
+.hero-credit{
+  margin-top:25px;
+  max-width:520px;
+  font-size:10px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#bda985;
+  line-height:1.8;
+}
+.hero-desc{
+  margin-top:22px;
+  color:#d5c6ae;
+  font:italic 16px/1.7 "Playfair Display",serif;
+  max-width:490px;
+}
+.enter{
+  margin-top:30px;
+  display:inline-flex;
+  padding:14px 23px;
+  border:1px solid var(--gold);
+  color:#f1dfb9;
+  text-decoration:none;
+  font-size:10px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  transition:.35s;
+}
+.enter:hover{background:var(--gold);color:#1a1009;transform:translateY(-3px)}
+
+.hero-art{
+  position:relative;
+  min-height:520px;
+  display:grid;
+  place-items:center;
+}
+.hero-bat{
+  position:absolute;
+  width:180px;
+  top:5%;
+  right:9%;
+  animation:batFloat 4s ease-in-out infinite;
+  filter:drop-shadow(0 18px 24px rgba(0,0,0,.4));
+}
+.hero-sun{
+  position:absolute;
+  width:270px;
+  right:4%;
+  bottom:9%;
+  animation:sway 5s ease-in-out infinite;
+}
+.hero-orb{
+  position:absolute;
+  width:390px;height:390px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(239,197,108,.33),rgba(239,197,108,0) 67%);
+  animation:pulse 4s ease-in-out infinite;
+}
+@keyframes batFloat{
+  0%,100%{transform:translateY(0) rotate(-3deg)}
+  50%{transform:translateY(-18px) rotate(4deg)}
+}
+@keyframes sway{
+  0%,100%{transform:rotate(-3deg) translateY(0)}
+  50%{transform:rotate(4deg) translateY(-8px)}
+}
+@keyframes pulse{
+  0%,100%{transform:scale(.94);opacity:.65}
+  50%{transform:scale(1.06);opacity:1}
+}
+
+/* ---------- INTRO ---------- */
+.intro{
+  padding:90px 8vw 50px;
+  text-align:center;
+  background:var(--paper);
+}
+.intro .mark{color:var(--orange);font-size:22px;margin-bottom:22px}
+.intro blockquote{
+  max-width:850px;
+  margin:auto;
+  font:italic 28px/1.5 "Playfair Display",serif;
+  color:#3a2a1d;
+}
+
+/* ---------- CHAPTERS ---------- */
+.chapters{padding:30px 9vw 120px}
+.chapter{
+  min-height:470px;
+  display:grid;
+  grid-template-columns:1.12fr .88fr;
+  gap:65px;
+  align-items:center;
+  margin:60px auto;
+  max-width:1250px;
+}
+.chapter.reverse{grid-template-columns:.88fr 1.12fr}
+.chapter.reverse .chapter-art{order:2}
+.chapter.reverse .chapter-copy{order:1}
+
+.chapter-art{
+  position:relative;
+  height:390px;
+  overflow:hidden;
+  border:1px solid rgba(70,48,30,.2);
+  box-shadow:0 22px 50px rgba(50,31,17,.12);
+  background:#d2c2a6;
+}
+.chapter-art img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .5s;
+}
+.chapter-art:hover img{transform:scale(1.045)}
+.chapter-tag{
+  position:absolute;
+  top:13px;left:13px;
+  z-index:2;
+  padding:7px 10px;
+  background:rgba(245,232,204,.9);
+  color:#34241a;
+  font-size:9px;
+  letter-spacing:.2em;
+}
+.chapter-copy .num{
+  color:#8d6948;
+  font-size:9px;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+}
+.chapter-copy h2{
+  margin-top:13px;
+  font:500 clamp(34px,4vw,54px)/1 "Playfair Display",serif;
+}
+.chapter-copy h2 em{
+  color:var(--orange);
+  font-style:italic;
+}
+.chapter-copy p{
+  margin-top:20px;
+  color:#685848;
+  font-size:13px;
+  line-height:1.9;
+}
+.chapter-copy blockquote{
+  margin-top:22px;
+  padding-left:18px;
+  border-left:2px solid var(--orange);
+  color:#4b3828;
+  font:italic 15px/1.7 "Playfair Display",serif;
+}
+
+/* ---------- ENDING ---------- */
+.ending{
+  position:relative;
+  min-height:760px;
+  padding:100px 8vw 70px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 67% 52%,rgba(204,137,48,.22),transparent 30%),
+    radial-gradient(circle at 42% 60%,rgba(125,73,34,.22),transparent 35%),
+    #110c09;
+  color:#f1e4cc;
+}
+.ending-inner{
+  max-width:1250px;
+  margin:auto;
+  min-height:590px;
+  position:relative;
+}
+.ending-copy{
+  position:absolute;
+  left:0;top:60px;
+  width:330px;
+  z-index:5;
+}
+.ending-kicker{
+  font-size:9px;
+  letter-spacing:.35em;
+  color:#b69d77;
+  text-transform:uppercase;
+}
+.ending h3{
+  margin-top:18px;
+  font:400 clamp(38px,5vw,65px)/.95 "Playfair Display",serif;
+}
+.ending h3 em{color:#e0a03a}
+.ending p{
+  margin-top:22px;
+  color:#cbbda6;
+  font-size:12px;
+  line-height:1.9;
+}
+.ending-line{
+  width:40px;height:1px;
+  background:var(--gold);
+  margin-top:30px;
+}
+
+.final-stage{
+  position:absolute;
+  right:-3%;
+  top:0;
+  width:min(72vw,850px);
+  height:620px;
+  display:grid;
+  place-items:center;
+  perspective:1000px;
+}
+.final-character{
+  width:100%;
+  max-width:820px;
+  max-height:620px;
+  object-fit:contain;
+  display:block;
+  cursor:pointer;
+  user-select:none;
+  filter:drop-shadow(0 30px 35px rgba(0,0,0,.38));
+  transform:translate3d(var(--mx,0),var(--my,0),0) rotate(-2deg);
+  animation:characterFloat 5.5s ease-in-out infinite;
+  transition:filter .3s;
+}
+.final-character:hover{
+  filter:drop-shadow(0 32px 40px rgba(220,168,59,.2));
+}
+@keyframes characterFloat{
+  0%,100%{margin-top:0}
+  50%{margin-top:-16px}
+}
+
+/* Petals are HTML so they can animate independently. */
+.petals{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.petal{
+  position:absolute;
+  width:10px;height:18px;
+  border-radius:80% 10% 80% 10%;
+  background:#d79b3c;
+  opacity:.75;
+  transform:rotate(25deg);
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translate3d(0,-40px,0) rotate(0deg);opacity:0}
+  10%{opacity:.8}
+  100%{transform:translate3d(var(--drift),760px,0) rotate(420deg);opacity:0}
+}
+.p1{left:48%;animation-duration:7s;--drift:-80px}
+.p2{left:58%;animation-duration:9s;animation-delay:1s;--drift:110px}
+.p3{left:70%;animation-duration:8s;animation-delay:2s;--drift:-130px}
+.p4{left:80%;animation-duration:10s;animation-delay:3s;--drift:80px}
+.p5{left:63%;animation-duration:6.5s;animation-delay:3.5s;--drift:-50px}
+.p6{left:90%;animation-duration:8.5s;animation-delay:1.5s;--drift:-100px}
+
+.click-hint{
+  position:absolute;
+  right:7%;
+  top:4%;
+  z-index:6;
+  font-size:9px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:#c9b693;
+  animation:hint 2s ease-in-out infinite;
+}
+@keyframes hint{50%{opacity:.45;transform:translateY(-3px)}}
+
+.final-character.is-clicked{
+  animation:characterPop .8s ease both;
+}
+@keyframes characterPop{
+  0%{transform:scale(1) rotate(-2deg)}
+  35%{transform:scale(1.045) rotate(1deg)}
+  70%{transform:scale(.985) rotate(-3deg)}
+  100%{transform:scale(1) rotate(-2deg)}
+}
+
+.ending-footer{
+  border-top:1px solid rgba(220,168,59,.25);
+  margin-top:20px;
+  padding-top:25px;
+  display:flex;
+  justify-content:space-between;
+  color:#9f8b6d;
+  font-size:9px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+
+/* ---------- CURSOR GLOW ---------- */
+.cursor-glow{
+  position:fixed;
+  width:180px;height:180px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:9999;
+  background:radial-gradient(circle,rgba(220,168,59,.10),transparent 70%);
+  transform:translate(-50%,-50%);
+  mix-blend-mode:screen;
+}
+
+/* ---------- REVEAL ---------- */
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:opacity .9s ease,transform .9s ease;
+}
+.reveal.visible{opacity:1;transform:none}
+
+/* ---------- MOBILE ---------- */
+@media(max-width:800px){
+  .nav{padding:0 5vw;height:62px}
+  .nav-links{gap:13px}
+  .nav-links a{font-size:8px}
+  .hero{
+    grid-template-columns:1fr;
+    padding:120px 7vw 40px;
+    min-height:auto;
+  }
+  .hero-art{min-height:390px}
+  .hero-bat{width:120px;right:5%}
+  .hero-sun{width:190px;right:2%}
+  .hero-orb{width:280px;height:280px}
+  .intro{padding:65px 7vw 30px}
+  .intro blockquote{font-size:21px}
+  .chapters{padding:10px 6vw 70px}
+  .chapter,.chapter.reverse{
+    grid-template-columns:1fr;
+    gap:28px;
+    min-height:0;
+    margin:50px auto;
+  }
+  .chapter.reverse .chapter-art,
+  .chapter.reverse .chapter-copy{order:initial}
+  .chapter-art{height:270px}
+  .ending{min-height:820px;padding:75px 6vw 30px}
+  .ending-copy{position:relative;top:auto;left:auto;width:auto}
+  .final-stage{
+    position:relative;
+    right:auto;top:auto;
+    width:100%;
+    height:500px;
+    margin-top:20px;
+  }
+  .final-character{max-height:500px}
+  .click-hint{top:3%;right:3%}
+  .ending-footer{font-size:7px}
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<nav class="nav">
+  <div class="logo">EDEN.</div>
+  <div class="nav-links">
+    <a href="#story">The Story</a>
+    <a href="#chapters">Chapters</a>
+    <a href="#ending">The End</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-copy reveal">
+    <div class="eyebrow">A Story From Eden</div>
+    <h1>The Bat & The<br><em>Sunflower</em></h1>
+
+    <div class="hero-credit">
+      MỘT CÂU CHUYỆN THUỘC MẠCH CỐT TRUYỆN CHÍNH CỦA EDEN
+      — TÁC GIẢ TIẾU VĂN THAN
+    </div>
+
+    <p class="hero-desc">
+      Một câu chuyện về bóng tối, ánh sáng và một tình cảm không thể chạm tới.
+    </p>
+
+    <a class="enter" href="#story">Enter The Story →</a>
+  </div>
+
+  <div class="hero-art">
+    <div class="hero-orb"></div>
+
+    <!-- Có thể thay 2 ảnh này bằng ảnh dơi/hoa riêng nếu cậu có -->
+    <div class="hero-bat">🦇</div>
+    <div class="hero-sun">🌻</div>
+  </div>
+</header>
+
+<section class="intro reveal" id="story">
+  <div class="mark">✦</div>
+  <blockquote>
+    “Có những ánh sáng không thể thuộc về ta,<br>
+    nhưng vẫn đủ để soi đường cho cả một hành trình.”
+  </blockquote>
+</section>
+
+<main class="chapters" id="chapters">
+
+  <section class="chapter reveal">
+    <div class="chapter-art">
+      <span class="chapter-tag">CHAPTER 01</span>
+      <img src="images/chapter-01.jpg"
+           alt="Chapter 01"
+           onerror="this.style.display='none'">
+    </div>
+
+    <div class="chapter-copy">
+      <div class="num">Chapter 01</div>
+      <h2>Ngày xửa<br><em>ngày xưa</em></h2>
+      <p>
+        Một chú dơi nhỏ sống cô độc giữa chính bầy đàn của mình.
+        Cậu luôn muốn tìm thấy niềm vui, nhưng lại sợ bị từ chối
+        nên dần khép mình trong bóng tối.
+      </p>
+      <blockquote>
+        “Đôi khi, điều khiến ta cô độc không phải là không có ai bên cạnh,
+        mà là ta không dám mở lòng.”
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="chapter reverse reveal">
+    <div class="chapter-art">
+      <span class="chapter-tag">CHAPTER 02</span>
+      <img src="images/chapter-02.jpg"
+           alt="Chapter 02"
+           onerror="this.style.display='none'">
+    </div>
+
+    <div class="chapter-copy">
+      <div class="num">Chapter 02</div>
+      <h2>Loài Hoa<br>của <em>Mặt Trời</em></h2>
+      <p>
+        Sau một biến cố, chú dơi lạc khỏi bầy đàn.
+        Khi kiệt sức, cậu tìm thấy một bông hướng dương.
+        Một người thuộc về bóng tối, một người thuộc về ánh sáng,
+        nhưng cả hai vẫn tìm thấy sự bình yên bên nhau.
+      </p>
+      <blockquote>
+        “Hai thế giới khác nhau vẫn có thể gặp nhau trong một khoảnh khắc.”
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="chapter reveal">
+    <div class="chapter-art">
+      <span class="chapter-tag">CHAPTER 03</span>
+      <img src="images/chapter-03.jpg"
+           alt="Chapter 03"
+           onerror="this.style.display='none'">
+    </div>
+
+    <div class="chapter-copy">
+      <div class="num">Chapter 03</div>
+      <h2>Ngày Hoa<br><em>biến mất</em></h2>
+      <p>
+        Khi nhận ra tình cảm của mình, chú dơi rời đi để tìm thêm
+        dũng khí. Nhưng khi trở lại, bông hoa đã không còn ở đó.
+        Chỉ còn những cánh hoa và một hạt giống nhỏ.
+      </p>
+      <blockquote>
+        “Có những người ta từng thương, nhưng mãi mãi không thể tìm thấy.”
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="chapter reverse reveal">
+    <div class="chapter-art">
+      <span class="chapter-tag">CHAPTER 04</span>
+      <img src="images/chapter-04.jpg"
+           alt="Chapter 04"
+           onerror="this.style.display='none'">
+    </div>
+
+    <div class="chapter-copy">
+      <div class="num">Chapter 04</div>
+      <h2>Hành trình<br>gieo một <em>phép màu</em></h2>
+      <p>
+        Chú dơi mang theo hạt giống trên suốt hành trình.
+        Cậu giữ lại những cánh hoa cũ, đan chúng thành một bông hoa nhỏ
+        và mang theo bên mình như một lời nhắc về người đã từng sưởi ấm cậu.
+      </p>
+      <blockquote>
+        “Khi một người không thể ở bên ta, ký ức về họ vẫn có thể tiếp tục lớn lên.”
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="chapter reveal">
+    <div class="chapter-art">
+      <span class="chapter-tag">CHAPTER 05</span>
+      <img src="images/chapter-05.jpg"
+           alt="Chapter 05"
+           onerror="this.style.display='none'">
+    </div>
+
+    <div class="chapter-copy">
+      <div class="num">Chapter 05</div>
+      <h2>Ánh sáng<br><em>vẫn còn</em></h2>
+      <p>
+        Rồi một ngày, hạt giống nảy mầm.
+        Một bông hướng dương mới xuất hiện.
+        Nó không thể thay thế bông hoa cũ,
+        nhưng mang theo cùng một thứ ánh sáng.
+      </p>
+      <blockquote>
+        “Hoa đã biến mất, nhưng ánh sáng nàng để lại chưa bao giờ biến mất.”
+      </blockquote>
+    </div>
+  </section>
+
+</main>
+
+<!-- ---------- FINAL ILLUSTRATION ---------- -->
+<section class="ending" id="ending">
+  <div class="ending-inner">
+
+    <div class="ending-copy reveal">
+      <div class="ending-kicker">The End Is Not Always The End</div>
+      <h3>Some lights<br>are meant to be <em>carried.</em></h3>
+      <p>
+        Có những người không thể cùng ta đi đến cuối hành trình,
+        nhưng ánh sáng họ để lại có thể soi đường cho ta suốt quãng đời còn lại.
+      </p>
+      <div class="ending-line"></div>
+    </div>
+
+    <div class="final-stage" id="finalStage">
+      <div class="click-hint">✦ Click để xem ánh sáng</div>
+
+      <div class="petals" aria-hidden="true">
+        <span class="petal p1"></span>
+        <span class="petal p2"></span>
+        <span class="petal p3"></span>
+        <span class="petal p4"></span>
+        <span class="petal p5"></span>
+        <span class="petal p6"></span>
+      </div>
+
+      <!-- Ảnh nhân vật không cần background -->
+      <img
+        id="finalCharacter"
+        class="final-character"
+        src="images/final-character.png"
+        alt="Nhân vật cuối hành trình Eden"
+      >
+    </div>
+
+    <div class="ending-footer">
+      <span>Good Night, Sunflower.</span>
+      <span>EDEN — TIẾU VĂN THAN © 2026</span>
+    </div>
+
+  </div>
+</section>
+
+<script>
+/* ---------- SCROLL REVEAL ---------- */
+const revealItems = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("visible");
+    }
+  });
+},{threshold:.15});
+
+revealItems.forEach(el=>observer.observe(el));
+
+
+/* ---------- CURSOR GLOW ---------- */
+const glow = document.getElementById("cursorGlow");
+
+window.addEventListener("pointermove",(e)=>{
+  glow.style.left = e.clientX + "px";
+  glow.style.top = e.clientY + "px";
+});
+
+
+/* ---------- FINAL CHARACTER PARALLAX ---------- */
+const finalStage = document.getElementById("finalStage");
+const finalCharacter = document.getElementById("finalCharacter");
+
+finalStage.addEventListener("pointermove",(e)=>{
+  const rect = finalStage.getBoundingClientRect();
+  const x = (e.clientX - rect.left) / rect.width - .5;
+  const y = (e.clientY - rect.top) / rect.height - .5;
+
+  finalCharacter.style.setProperty("--mx", `${x * 18}px`);
+  finalCharacter.style.setProperty("--my", `${y * 12}px`);
+});
+
+finalStage.addEventListener("pointerleave",()=>{
+  finalCharacter.style.setProperty("--mx","0px");
+  finalCharacter.style.setProperty("--my","0px");
+});
+
+
+/* ---------- CLICK INTERACTION ---------- */
+finalCharacter.addEventListener("click",()=>{
+  finalCharacter.classList.remove("is-clicked");
+
+  // Force browser to restart the animation.
+  void finalCharacter.offsetWidth;
+
+  finalCharacter.classList.add("is-clicked");
+
+  // Spawn a few temporary golden particles.
+  for(let i=0;i<12;i++){
+    const spark = document.createElement("span");
+
+    spark.style.position="absolute";
+    spark.style.width="5px";
+    spark.style.height="5px";
+    spark.style.borderRadius="50%";
+    spark.style.background="#e0a03a";
+    spark.style.left=(42 + Math.random()*25)+"%";
+    spark.style.top=(35 + Math.random()*30)+"%";
+    spark.style.pointerEvents="none";
+    spark.style.boxShadow="0 0 14px #e0a03a";
+    spark.style.zIndex="8";
+
+    finalStage.appendChild(spark);
+
+    const dx=(Math.random()-.5)*260;
+    const dy=(Math.random()-.5)*220;
+
+    spark.animate([
+      {transform:"translate(0,0) scale(1)",opacity:1},
+      {transform:`translate(${dx}px,${dy}px) scale(0)`,opacity:0}
+    ],{
+      duration:900 + Math.random()*700,
+      easing:"cubic-bezier(.2,.7,.2,1)"
+    }).onfinish=()=>spark.remove();
+  }
+});
+
+
+/* ---------- EXTRA TILT ---------- */
+finalStage.addEventListener("pointermove",(e)=>{
+  const rect=finalStage.getBoundingClientRect();
+  const rx=((e.clientY-rect.top)/rect.height-.5)*-4;
+  const ry=((e.clientX-rect.left)/rect.width-.5)*5;
+
+  finalCharacter.style.transform =
+    `translate3d(var(--mx),var(--my),0) rotate(-2deg) rotateX(${rx}deg) rotateY(${ry}deg)`;
+});
+
+finalStage.addEventListener("pointerleave",()=>{
+  finalCharacter.style.transform =
+    "translate3d(0,0,0) rotate(-2deg)";
+});
+</script>
+
+</body>
+</html>
